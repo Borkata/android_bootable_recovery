@@ -1233,6 +1233,7 @@ static void partition_sdcard(const char* volume) {
                                  "1024M",
                                  "2048M",
                                  "4096M",
+				 "7648M",
                                  NULL };
 
     static char* swap_sizes[] = { "0M",
@@ -1260,7 +1261,7 @@ static void partition_sdcard(const char* volume) {
     sddevice[strlen("/dev/block/mmcblkX")] = NULL;
     char cmd[PATH_MAX];
     setenv("SDPATH", sddevice, 1);
-    sprintf(cmd, "sdparted -es %s -ss %s -efs ext3 -s", ext_sizes[ext_size], swap_sizes[swap_size]);
+    sprintf(cmd, "sdparted -es %s -ss %s -efs ext4 -s", ext_sizes[ext_size], swap_sizes[swap_size]);
     ui_print("Partitioning SD Card... please wait...\n");
     if (0 == __system(cmd))
         ui_print("Done!\n");
