@@ -1300,6 +1300,7 @@ void partition_sdcard(const char* volume) {
                                  "1024M",
                                  "2048M",
                                  "4096M",
+                                 "7648M",
                                  NULL };
 
     static char* swap_sizes[] = { "0M",

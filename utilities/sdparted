@@ -198,8 +198,12 @@ CalculatePartitions() {
 	SWAPEND=$(($EXTEND + $SWAPSIZE))
 	
 	# check for fatsize of 0
-	[ $FATSIZE -le 0 ] && ShowError "must have a fat32 partition greater than 0MB"
-	
+	#[ $FATSIZE -le 0 ] && ShowError "must have a fat32 partition greater than 0MB"
+	if [ $FATSIZE -le 0 ] ; then
+		echo "must have a fat32 partition greater than 0MB"
+		EXTPATH=$SDPATH"p1"
+	fi
+
 	# check for zero-length sdsize...
 	# indicative of parted not reporting length 
 	# correctly b/c of error on sdcard
