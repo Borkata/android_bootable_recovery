@@ -1333,6 +1333,9 @@ void partition_sdcard(const char* volume) {
     char sddevice[256];
     Volume *vol = volume_for_path(volume);
 
+    if (ensure_path_unmounted("/data") != 0)
+       ui_print("Data partition not unmounted %s.\n",vol->mount_point);
+
     // can_partition() ensured either blk_device or blk_device2 has /dev/block/mmcblk format
     if (strstr(vol->blk_device, "/dev/block/mmcblk") != NULL)
         strcpy(sddevice, vol->blk_device);
