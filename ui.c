@@ -258,7 +258,7 @@ static void draw_text_line(int row, const char* t, int align) {
     }
 
     if (ui_get_rainbow_mode()) ui_rainbow_mode();
-    gr_text(0, (row+1)*CHAR_HEIGHT-1, t, 0);
+    gr_text(col, (row+1)*CHAR_HEIGHT-1, t, 0);
   }
 }
 
@@ -625,7 +625,7 @@ void ui_init(void)
 
 char *ui_copy_image(int icon, int *width, int *height, int *bpp) {
     pthread_mutex_lock(&gUpdateMutex);
-    draw_background_locked(icon);
+    draw_background_locked(gBackgroundIcon[icon]);
     *width = gr_fb_width();
     *height = gr_fb_height();
     *bpp = sizeof(gr_pixel) * 8;
